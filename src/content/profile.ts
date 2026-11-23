@@ -108,7 +108,7 @@ export const featured: FeaturedProject[] = [
   {
     id: "bulbul",
     name: "Bulbul",
-    role: "Flutter Developer",
+    role: "Flutter Developer (Part-time)",
     period: "2025 – 2026",
     headline: "Three Flutter apps for one delivery platform.",
     description:
@@ -265,7 +265,7 @@ export const experience: Role[] = [
   },
   {
     id: "bulbul",
-    role: "Flutter Developer",
+    role: "Flutter Developer (Part-time)",
     company: "Bulbul",
     companyUrl: "https://bulbulsy.com",
     context: "Delivery platform",
