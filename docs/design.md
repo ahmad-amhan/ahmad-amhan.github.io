@@ -44,8 +44,11 @@ did not mention GoVisual (co-founder, full-stack) or Bulbul (three Flutter apps)
   Other variants live in git-ignored `content/cv-variants.local.json` and render only
   under `CV_PRIVATE=1`, which `pnpm cv` sets. The script deletes `out/` afterwards so
   a build containing a private variant cannot be deployed by accident.
-- **CV typography:** section headings have no letter-spacing. Spaced capitals
-  extract from the PDF as "SU MMARY", which breaks CV parsers.
+- **CV format:** written for CV parsers (ATS and AI screening) first. Black on white,
+  one column, Arial, no photo, no icons, standard section names (Summary, Work
+  Experience, Projects, Skills, Education, Languages), contact details as plain text
+  under the name. Section headings have no letter-spacing: spaced capitals extract
+  from the PDF as "SU MMARY". The site carries the visual design; the CV does not.
 - **Theme:** warm paper / ink with one orange accent; system theme by default, toggle
   saved in `localStorage`, applied before paint to avoid a flash.
 - **Motion:** scroll reveals only, disabled under `prefers-reduced-motion`, and

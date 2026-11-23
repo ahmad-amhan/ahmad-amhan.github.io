@@ -389,10 +389,9 @@ export const skills: { group: string; items: string[] }[] = [
 
 export const education = {
   degree: "B.Eng. Information Engineering",
-  specialization: "Computer Networks & Operating Systems Engineering",
   school: "Arab International University (AIU)",
   place: "Damascus",
-  period: "2015 – 2021",
+  period: "2015 – 2020",
   projects: [
     "Store web application (ASP.NET MVC, C#)",
     "Store mobile app for Android (Java)",

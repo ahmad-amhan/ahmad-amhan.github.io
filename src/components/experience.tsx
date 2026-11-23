@@ -69,7 +69,6 @@ export function Experience() {
         <article className="rounded-3xl border border-line bg-surface p-7">
           <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted">Education</p>
           <h3 className="mt-4 text-xl font-medium tracking-[-0.02em]">{education.degree}</h3>
-          <p className="mt-1 text-ink-2">{education.specialization}</p>
           <p className="mt-3 text-[15px] text-muted">
             {education.school}, {education.place} · {education.period}
           </p>
