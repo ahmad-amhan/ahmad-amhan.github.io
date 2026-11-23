@@ -178,8 +178,11 @@ export const products: Product[] = [
     role: "Product Owner & Mobile Lead",
     domain: "yard",
     description:
-      "A published iOS app and a Flutter Web admin portal for yard owners and administrators: vehicle check-in and check-out, QR code scanning, QR label printing and multi-yard vehicle management.",
-    links: [{ label: "App Store", href: "https://apps.apple.com/us/app/reliable-yard-management/id6762463289" }],
+      "Android and iOS apps on the stores and a Flutter Web admin portal for yard owners and administrators: vehicle check-in and check-out, QR code scanning, QR label printing and multi-yard vehicle management.",
+    links: [
+      { label: "Google Play", href: "https://play.google.com/store/apps/details?id=com.reliableFleetServices.yardManagement" },
+      { label: "App Store", href: "https://apps.apple.com/us/app/reliable-yard-management/id6762463289" },
+    ],
   },
   {
     name: "ALEF 360° HSEQ",
