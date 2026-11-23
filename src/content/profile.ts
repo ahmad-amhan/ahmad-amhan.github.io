@@ -75,7 +75,7 @@ export const profile = {
   intro:
     "Product Owner & Mobile Team Lead at Unifi Solutions and co-founder of GoVisual. Since 2021 I have been building and shipping Flutter apps for healthcare, facility management, IoT, fleet and delivery.",
   summary:
-    "Product Owner and Mobile Team Lead who has been shipping Flutter apps to Google Play and the App Store since 2021. I own B2B product requirements end to end, lead mobile architecture, code review and releases, and coordinate delivery across web, backend and QA. Co-founder and full-stack engineer at GoVisual (Next.js, Node.js). Experience across healthcare, facility management (CAFM/CMMS), IoT, fleet and delivery, including white-label apps.",
+    "Product Owner and Mobile Team Lead who has been shipping Flutter apps to Google Play and the App Store since 2021. I own B2B product requirements end to end, lead mobile architecture, code review and releases, and coordinate delivery across web, backend and QA. Co-founder and full-stack engineer at GoVisual (Next.js, Node.js). Experience across healthcare, facility management (CAFM/CMMS), IoT, fleet and delivery, including white-label apps. I work with AI coding agents (Claude Code, Codex) daily and write custom skills for them.",
   email: "ahmadamhan11@gmail.com",
   linkedin: {
     label: "linkedin.com/in/ahmad-amhan-182a9019a",
@@ -323,6 +323,7 @@ export const experience: Role[] = [
       "Coordinate Google Play and App Store releases: metadata, privacy policy updates, review notes, rejection appeals, permission compliance and follow-up.",
       "Support web delivery by clarifying requirements, reviewing and merging pull requests, and coordinating with React developers.",
       "Led mobile and Flutter Web delivery for Reliable Yard Management: the mobile app and the admin portal for yard owners.",
+      "Use AI coding agents (Claude Code, Codex) in day-to-day delivery, and write the custom skills and project rules the agents follow.",
     ],
   },
   {
@@ -463,8 +464,12 @@ export const skills: { group: string; items: string[] }[] = [
       "App Store Connect",
       "Git",
       "Jira & Bitbucket",
-      "AI-assisted development",
     ],
+  },
+  {
+    // From Ahmad's own description: he works with Claude and Codex and writes skills for them.
+    group: "AI-assisted development",
+    items: ["Claude Code", "OpenAI Codex", "Writing custom agent skills", "Project rules for AI agents"],
   },
 ];
 

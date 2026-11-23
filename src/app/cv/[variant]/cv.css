@@ -52,8 +52,8 @@
   box-shadow: 0 10px 40px -16px rgb(0 0 0 / 0.3);
   /* A standard font every parser knows; nothing here depends on a web font. */
   font-family: Arial, Helvetica, "Liberation Sans", sans-serif;
-  font-size: 9.6pt;
-  line-height: 1.38;
+  font-size: 9.4pt;
+  line-height: 1.34;
 }
 
 .cv a {
@@ -92,7 +92,7 @@
 }
 
 .cv section {
-  margin-top: 11px;
+  margin-top: 9px;
 }
 
 .cv h2 {
@@ -101,7 +101,7 @@
   /* No letter-spacing: spaced capitals extract from the PDF as "SU MMARY", which trips CV parsers. */
   text-transform: uppercase;
   padding-bottom: 2px;
-  margin-bottom: 6px;
+  margin-bottom: 5px;
   border-bottom: 0.5pt solid #000;
   break-after: avoid;
 }
@@ -116,7 +116,7 @@
 }
 
 .cv-role + .cv-role {
-  margin-top: 8px;
+  margin-top: 6px;
 }
 
 .cv-role-head {
@@ -150,7 +150,7 @@
 }
 
 .cv-project + .cv-project {
-  margin-top: 4px;
+  margin-top: 3px;
 }
 
 .cv-skill + .cv-skill {

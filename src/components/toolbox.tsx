@@ -2,8 +2,8 @@ import { skills } from "@/content/profile";
 import { Reveal } from "./reveal";
 import { Chip, Hl, Section } from "./ui";
 
-/** Column spans for the bento layout, in the same order as `skills`. */
-const spans = ["md:col-span-3", "md:col-span-3", "md:col-span-2", "md:col-span-2", "md:col-span-2"];
+/** Column spans for the bento layout, in the same order as `skills`: 3 + 3, then 2 + 2 + 2, then one wide card. */
+const spans = ["md:col-span-3", "md:col-span-3", "md:col-span-2", "md:col-span-2", "md:col-span-2", "md:col-span-6"];
 
 export function Toolbox() {
   return (
