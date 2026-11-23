@@ -139,7 +139,9 @@ function PhoneStrip({ shots }: { shots: Shot[] }) {
                       width={440}
                       height={956}
                       sizes="216px"
-                      loading="lazy"
+                      // Eager on purpose: the row moves, and a lazy image can slide into view blank.
+                      loading="eager"
+                      fetchPriority="low"
                       className="aspect-[440/956] w-full rounded-[24px] object-cover"
                     />
                   </div>

@@ -7,7 +7,7 @@ export function Contact() {
   const { contact } = profile;
 
   return (
-    <section id="contact" aria-labelledby="contact-title" className="overflow-x-clip py-20 sm:py-28">
+    <section id="contact" aria-labelledby="contact-title" className="py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <Reveal>
           <div className="glow-ring rounded-[36px]">

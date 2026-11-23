@@ -106,7 +106,7 @@ export function Hero() {
           <div className="grid gap-4 lg:col-span-4 lg:gap-5">
             <Reveal delay={400}>
               <div className="spot h-full rounded-[28px] border border-line bg-surface p-6">
-                <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted">Roles I hold</p>
+                <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted">Roles I&apos;ve held</p>
                 {/* The moving ticker is decorative; the same roles are listed as plain text for assistive tech. */}
                 <p className="sr-only">{roles.join(", ")}</p>
                 <div
