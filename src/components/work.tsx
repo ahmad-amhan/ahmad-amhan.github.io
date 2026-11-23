@@ -14,10 +14,10 @@ export function Work() {
       label="Selected work"
       title={
         <>
-          Products I&apos;ve <Em>built</Em> and products I&apos;ve <Em accent>led.</Em>
+          Hands-on <Em>engineering,</Em> and products I&apos;ve <Em accent>led.</Em>
         </>
       }
-      lead="Two products I built hands-on, then the platforms I own and lead at Unifi Solutions."
+      lead="Two products I work on as an engineer, then the platforms I own and lead at Unifi Solutions."
     >
       <div className="flex flex-col gap-6">
         {featured.map((project, i) => (

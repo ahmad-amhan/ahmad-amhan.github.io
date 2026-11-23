@@ -232,6 +232,14 @@
   color: var(--cv-muted);
 }
 
+.cv-languages {
+  margin-top: 5px;
+}
+
+.cv-languages strong {
+  font-weight: 600;
+}
+
 .cv-keep {
   break-inside: avoid;
 }

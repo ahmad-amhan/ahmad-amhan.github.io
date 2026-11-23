@@ -127,7 +127,7 @@ export default async function CvPage({ params }: { params: Promise<{ variant: st
         </section>
 
         <section className="cv-keep">
-          <h2>Education</h2>
+          <h2>Education &amp; languages</h2>
           <div className="cv-role-head">
             <h3>
               {education.degree} — {education.specialization}
@@ -138,11 +138,9 @@ export default async function CvPage({ params }: { params: Promise<{ variant: st
             {education.school} · {education.place}
           </p>
           <p className="cv-small">University projects: {education.projects.join("; ")}.</p>
-        </section>
-
-        <section className="cv-keep">
-          <h2>Languages</h2>
-          <p>{profile.languages.join(" · ")}</p>
+          <p className="cv-languages">
+            <strong>Languages:</strong> {profile.languages.join(", ")}
+          </p>
         </section>
       </article>
     </div>
