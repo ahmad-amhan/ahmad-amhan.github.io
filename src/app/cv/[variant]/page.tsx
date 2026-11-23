@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { education, experience, products, profile, site, skills } from "@/content/profile";
+import { education, experience, featured, products, profile, site, skills, type Link as ProfileLink, type Role } from "@/content/profile";
 import { cvVariants } from "@/lib/cv-variants";
 import "./cv.css";
 
@@ -18,7 +18,8 @@ export function generateStaticParams() {
 }
 
 export const metadata: Metadata = {
-  title: "CV",
+  // This becomes the PDF's document title, which recruiters and parsers see.
+  title: { absolute: `${profile.name} - ${profile.title} - CV` },
   robots: { index: false },
 };
 
@@ -82,6 +83,14 @@ export default async function CvPage({ params }: { params: Promise<{ variant: st
               <p className="cv-company">
                 {role.company}
                 {role.context ? ` (${role.context})` : ""}, {role.location}
+                {roleLinks(role).map((link, i) => (
+                  <span key={link.href}>
+                    {i === 0 ? " | " : ", "}
+                    <a href={link.href} className="cv-link">
+                      {link.label}
+                    </a>
+                  </span>
+                ))}
               </p>
               <ul>
                 {role.bullets.map((bullet) => (
@@ -142,4 +151,15 @@ export default async function CvPage({ params }: { params: Promise<{ variant: st
       </article>
     </div>
   );
+}
+
+/**
+ * Links shown beside a role: the project's public links when the role is a
+ * featured project (its site and store listings), otherwise the company site.
+ */
+function roleLinks(role: Role): ProfileLink[] {
+  const project = featured.find((item) => item.id === role.id);
+  if (project) return project.links;
+  if (!role.companyUrl) return [];
+  return [{ label: new URL(role.companyUrl).hostname.replace(/^www\./, ""), href: role.companyUrl }];
 }

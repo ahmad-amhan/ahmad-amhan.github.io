@@ -177,9 +177,17 @@
 }
 
 @media print {
+  /* The site is dark by default. On paper the whole sheet, margins included, must be
+     white: without forcing the light colour scheme Chrome paints the margins black. */
+  :root {
+    color-scheme: light !important;
+    background: #fff !important;
+  }
+
   html,
   body {
     background: #fff !important;
+    color: #000 !important;
   }
 
   .cv-screen {

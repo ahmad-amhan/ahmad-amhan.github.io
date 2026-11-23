@@ -59,6 +59,11 @@ traditional and too close to the Claude website. All four cues are gone.
   plain text under the name, store links as underlined labels. Section headings have
   no letter-spacing: spaced capitals extract from the PDF as "SU MMARY". The site
   carries the visual design; the CV does not.
+- **CV print colour:** the site is dark by default, so the CV's print styles force
+  `color-scheme: light` and a white root background. Without that, Chrome prints the
+  page margins black. Look at the PDF after any change to the site theme.
+- **CV links:** each role shows its public links beside the company (site and store
+  listings); projects end with their store links.
 - **CV variants:** `cairo` is public (`/cv/cairo/`, `public/Ahmad_Amhan_CV.pdf`).
   Other variants live in git-ignored `content/cv-variants.local.json` and render only
   under `CV_PRIVATE=1`, which `pnpm cv` sets. The script deletes `out/` afterwards so
