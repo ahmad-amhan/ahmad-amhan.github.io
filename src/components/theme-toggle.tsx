@@ -9,7 +9,7 @@ import { Moon, Sun } from "./icons";
 export function ThemeToggle() {
   function toggle() {
     const root = document.documentElement;
-    const next = root.dataset.theme === "dark" ? "light" : "dark";
+    const next = root.dataset.theme === "light" ? "dark" : "light";
     root.dataset.theme = next;
     try {
       localStorage.setItem("theme", next);
@@ -22,11 +22,11 @@ export function ThemeToggle() {
     <button
       type="button"
       onClick={toggle}
-      aria-label="Switch between light and dark theme"
-      className="grid size-10 place-items-center rounded-full border border-line bg-surface text-ink-2 transition-colors hover:border-ink/40 hover:text-ink"
+      aria-label="Switch between dark and light theme"
+      className="grid size-10 place-items-center rounded-full border border-line bg-surface/80 text-ink-2 backdrop-blur transition-colors hover:border-accent-text hover:text-accent-text"
     >
-      <Moon className="size-[18px] dark:hidden" />
-      <Sun className="hidden size-[18px] dark:block" />
+      <Sun className="size-[18px] light:hidden" />
+      <Moon className="hidden size-[18px] light:block" />
     </button>
   );
 }

@@ -51,7 +51,15 @@ export type FeaturedProject = {
   points: string[];
   stack: string[];
   links: Link[];
+  /** Real screens from public sources only (store listings, public demo pages). */
+  shots: Shot[];
+  /** Where the screens come from, shown under the gallery. */
+  shotsSource: string;
+  /** Number of this project's apps that have a public store listing. */
+  storeApps?: number;
 };
+
+export type Shot = { src: string; alt: string; label: string };
 
 export const site = {
   /** Set NEXT_PUBLIC_SITE_URL once a domain is bought. */
@@ -83,12 +91,10 @@ export const profile = {
   languages: ["Arabic", "English"],
 };
 
-export const glance: { label: string; value: string }[] = [
-  { label: "Roles", value: "Product Owner · Team Lead · Engineer" },
-  { label: "Platforms", value: "Android · iOS · Flutter Web" },
-  { label: "Domains", value: "Healthcare · CAFM/CMMS · IoT · Fleet · Delivery" },
-  { label: "Languages", value: "Arabic · English" },
-];
+/** Roles the hero cycles through. Each is a title held on the CV. */
+export const roles = ["Product Owner", "Mobile Team Lead", "Flutter Developer", "Co-Founder, GoVisual"];
+
+export const domains = ["Healthcare", "Facility management", "IoT", "Fleet", "Delivery", "Retail catalogs"];
 
 export const featured: FeaturedProject[] = [
   {
@@ -105,8 +111,16 @@ export const featured: FeaturedProject[] = [
       "Public catalog interactions and right-to-left behaviour for Arabic.",
       "API and browser regression tests around those features.",
     ],
-    stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Node.js", "Express", "MongoDB", "Vitest", "Playwright"],
+    stack: ["Next.js", "React", "TypeScript", "Node.js", "Express", "MongoDB", "Vitest", "Playwright"],
     links: [{ label: "govisual.info", href: "https://govisual.info" }],
+    shots: [
+      { src: "/images/govisual/fashion.webp", label: "Fashion catalog", alt: "GoVisual demo catalog for a fashion house, shown on a phone" },
+      { src: "/images/govisual/food.webp", label: "Restaurant catalog", alt: "GoVisual demo catalog for a restaurant, shown on a phone" },
+      { src: "/images/govisual/fashion-ar.webp", label: "Arabic, right-to-left", alt: "The fashion demo catalog in Arabic with a right-to-left layout" },
+      { src: "/images/govisual/handmade.webp", label: "Handmade catalog", alt: "GoVisual demo catalog for a handmade goods workshop, shown on a phone" },
+      { src: "/images/govisual/beauty.webp", label: "Beauty catalog", alt: "GoVisual demo catalog for a beauty studio, shown on a phone" },
+    ],
+    shotsSource: "Screens from the public demo catalogs on govisual.info.",
   },
   {
     id: "bulbul",
@@ -128,12 +142,24 @@ export const featured: FeaturedProject[] = [
       { label: "Google Play", href: "https://play.google.com/store/apps/developer?id=BulbulApp" },
       { label: "App Store", href: "https://apps.apple.com/us/developer/louai-chabban/id6808256667" },
     ],
+    shots: [
+      { src: "/images/bulbul/customer-1.webp", label: "Customer · home", alt: "Bulbul customer app home screen with nearby stores" },
+      { src: "/images/bulbul/customer-2.webp", label: "Customer · store", alt: "Bulbul customer app store page" },
+      { src: "/images/bulbul/customer-5.webp", label: "Customer · checkout", alt: "Bulbul customer app order confirmation with a delivery map" },
+      { src: "/images/bulbul/vendor-1.webp", label: "Vendor · new order", alt: "Bulbul vendor app showing an incoming order to accept or reject" },
+      { src: "/images/bulbul/vendor-2.webp", label: "Vendor · order queue", alt: "Bulbul vendor app list of orders in progress" },
+      { src: "/images/bulbul/driver-1.webp", label: "Driver · new delivery", alt: "Bulbul driver app showing a new delivery request" },
+      { src: "/images/bulbul/driver-2.webp", label: "Driver · on the way", alt: "Bulbul driver app showing a delivery on the way to the customer" },
+    ],
+    shotsSource: "Screens from the Bulbul listings on the App Store.",
+    storeApps: 3,
   },
 ];
 
 export const products: Product[] = [
   {
     name: "X.eMAR / MedXSol",
+    icon: "/images/apps/xemar.webp",
     kind: "Medication management system",
     role: "Product Owner & Mobile Lead",
     domain: "health",
@@ -147,6 +173,7 @@ export const products: Product[] = [
   },
   {
     name: "Reliable Yard Management",
+    icon: "/images/apps/reliable-yard.webp",
     kind: "Yard operations platform",
     role: "Product Owner & Mobile Lead",
     domain: "yard",
@@ -165,6 +192,7 @@ export const products: Product[] = [
   },
   {
     name: "CAFM / CMMS Field Apps",
+    icon: "/images/apps/cafm-field.webp",
     kind: "Technician operations",
     role: "Mobile Team Lead",
     domain: "facility",
@@ -177,6 +205,7 @@ export const products: Product[] = [
   },
   {
     name: "CAFM / CMMS Tenant Apps",
+    icon: "/images/apps/cafm-tenant.webp",
     kind: "Facility requests",
     role: "Mobile Team Lead",
     domain: "facility",
@@ -189,6 +218,7 @@ export const products: Product[] = [
   },
   {
     name: "Alef IoT",
+    icon: "/images/apps/alef-iot.webp",
     kind: "IoT monitoring & facility management",
     role: "Mobile Team Lead",
     domain: "iot",
@@ -201,6 +231,7 @@ export const products: Product[] = [
   },
   {
     name: "Alef IoT TechNex Captain",
+    icon: "/images/apps/technex-captain.webp",
     kind: "Fleet management",
     role: "Mobile Team Lead",
     domain: "fleet",
@@ -213,6 +244,7 @@ export const products: Product[] = [
   },
   {
     name: "Care First Pharmacy",
+    icon: "/images/apps/care-first.webp",
     kind: "Pharmacy patient app",
     role: "Mobile Team Lead",
     domain: "pharmacy",
@@ -225,6 +257,21 @@ export const products: Product[] = [
     ],
   },
 ];
+
+const isStoreLink = (link: Link) => link.label === "Google Play" || link.label === "App Store";
+
+/** Headline numbers. All computed from the data above, so they cannot drift from it. */
+export function stats(): { value: number; suffix: string; label: string }[] {
+  const firstYear = Math.min(...experience.map((role) => Number(role.start.slice(-4))));
+  const storeApps =
+    products.filter((product) => product.links.some(isStoreLink)).length +
+    featured.reduce((sum, project) => sum + (project.storeApps ?? 0), 0);
+  return [
+    { value: new Date().getFullYear() - firstYear, suffix: "+", label: "years shipping Flutter apps" },
+    { value: storeApps, suffix: "", label: "apps live on the stores" },
+    { value: products.length, suffix: "", label: "products led at Unifi Solutions" },
+  ];
+}
 
 export const capabilities: { title: string; body: string; items: string[] }[] = [
   {
@@ -359,6 +406,7 @@ export const skills: { group: string; items: string[] }[] = [
       "Requirement clarification",
       "Acceptance criteria",
       "Technical project management",
+      "Leading web and backend developers",
       "PR review",
       "Release coordination",
       "QA support",
@@ -397,8 +445,10 @@ export const skills: { group: string; items: string[] }[] = [
     ],
   },
   {
-    group: "Web & backend",
-    items: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Node.js", "Express", "MongoDB"],
+    // Working knowledge, not senior-level practice: Ahmad directs and assists the web and
+    // backend developers who work in these. He asked for the CV to say so plainly.
+    group: "Web & backend (working knowledge)",
+    items: ["Next.js", "React", "TypeScript", "Node.js", "Express", "MongoDB", "HTML & CSS"],
   },
   {
     group: "Delivery",

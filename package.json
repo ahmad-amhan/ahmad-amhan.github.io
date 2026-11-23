@@ -7,7 +7,8 @@
     "build": "next build",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
-    "cv": "node scripts/make-cv.mjs"
+    "cv": "node scripts/make-cv.mjs",
+    "og": "node scripts/make-og.mjs"
   },
   "dependencies": {
     "next": "16.2.7",

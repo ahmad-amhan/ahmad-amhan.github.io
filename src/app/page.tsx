@@ -1,5 +1,6 @@
 import { Approach } from "@/components/approach";
 import { Contact, Footer } from "@/components/contact";
+import { Effects } from "@/components/effects";
 import { Experience } from "@/components/experience";
 import { Hero } from "@/components/hero";
 import { Nav } from "@/components/nav";
@@ -17,7 +18,7 @@ export default function Home() {
     email: `mailto:${profile.email}`,
     ...(site.url ? { url: site.url } : {}),
     address: { "@type": "PostalAddress", addressLocality: "Cairo", addressCountry: "EG" },
-    worksFor: { "@type": "Organization", name: experience[0].company, url: experience[0].companyUrl },
+    worksFor: { "@type": "Organization", name: experience[0].company },
     alumniOf: { "@type": "CollegeOrUniversity", name: education.school },
     knowsLanguage: profile.languages,
     sameAs: [profile.linkedin.href],
@@ -27,20 +28,19 @@ export default function Home() {
     <>
       <a
         href="#work"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-ink focus:px-4 focus:py-2 focus:text-bg"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[80] focus:rounded-full focus:bg-accent focus:px-4 focus:py-2 focus:text-accent-ink"
       >
         Skip to content
       </a>
+      <Effects />
       <Nav />
       <main>
         <Hero />
-        <div className="mt-20 sm:mt-28">
-          <Work />
-          <Approach />
-          <Experience />
-          <Toolbox />
-          <Contact />
-        </div>
+        <Work />
+        <Approach />
+        <Experience />
+        <Toolbox />
+        <Contact />
       </main>
       <Footer />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />

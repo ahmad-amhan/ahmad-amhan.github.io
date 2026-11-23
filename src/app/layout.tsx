@@ -1,16 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
+import { Bricolage_Grotesque, Geist, Geist_Mono } from "next/font/google";
 import { profile, site } from "@/content/profile";
 import "./globals.css";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
-const instrumentSerif = Instrument_Serif({
-  variable: "--font-instrument-serif",
-  subsets: ["latin"],
-  weight: "400",
-  style: ["normal", "italic"],
-});
+const bricolage = Bricolage_Grotesque({ variable: "--font-bricolage", subsets: ["latin"] });
 
 const description = profile.tagline;
 const ogImage = { url: "/og.png", width: 1200, height: 630, alt: `${profile.name} — ${profile.title}` };
@@ -35,21 +30,21 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f5f2ea" },
-    { media: "(prefers-color-scheme: dark)", color: "#0d0e10" },
-  ],
+  themeColor: "#07080b",
 };
 
-/** Runs before paint: picks the saved or system theme and flags that JS is available. */
-const themeScript = `(function(){try{var d=document.documentElement;var s=localStorage.getItem("theme");var t=s==="light"||s==="dark"?s:(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");d.dataset.theme=t;d.classList.add("js");}catch(e){}})();`;
+/**
+ * Runs before paint. The site is dark unless the visitor has chosen light,
+ * and the `js` class tells the CSS it is safe to hide content for reveals.
+ */
+const themeScript = `(function(){try{var d=document.documentElement;d.dataset.theme=localStorage.getItem("theme")==="light"?"light":"dark";d.classList.add("js");}catch(e){}})();`;
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${bricolage.variable} antialiased`}
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />

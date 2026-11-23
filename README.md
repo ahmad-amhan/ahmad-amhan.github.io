@@ -11,6 +11,7 @@ pnpm build      # static site in out/
 pnpm lint
 pnpm typecheck
 pnpm cv         # regenerate the CV PDFs (needs Chrome or Edge installed)
+pnpm og         # regenerate public/og.png, the social preview image
 ```
 
 ## Editing content
@@ -45,8 +46,17 @@ Set `NEXT_PUBLIC_SITE_URL` (for example `https://example.com`) in the host's
 environment once there is a domain. It enables canonical URLs, the sitemap and
 the website line on the CV.
 
+## Images
+
+- `public/images/bulbul/` — screenshots from the Bulbul listings on the App Store.
+- `public/images/govisual/` — screenshots of the public demo catalogs on govisual.info.
+- `public/images/apps/` — app icons from the public store listings.
+- `public/images/ahmad-amhan-portrait.jpg` — the original photo, cropped only.
+
+Only public material goes here. Nothing from client or employer repos.
+
 ## Other notes
 
-- `public/og.png` is the social preview image (1200×630).
-- `scripts/clean-photo.py` is how the backdrop lettering was removed from the
-  portrait. See `docs/design.md` for the design decisions.
+- `public/og.png` is the social preview image (1200×630); `pnpm og` rebuilds it.
+- The first design is kept at the git tag `v1-first-design`.
+- See `docs/design.md` for the design decisions.
