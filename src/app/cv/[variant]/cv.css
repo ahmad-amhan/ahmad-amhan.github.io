@@ -61,6 +61,11 @@
   text-decoration: none;
 }
 
+/* Store links stay black but are underlined, so a reader can tell they are clickable. */
+.cv a.cv-link {
+  text-decoration: underline;
+}
+
 .cv-header {
   padding-bottom: 8px;
   border-bottom: 1pt solid #000;

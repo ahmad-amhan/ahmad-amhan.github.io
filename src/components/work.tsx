@@ -126,17 +126,21 @@ function ProductCard({ product }: { product: Product }) {
       <h4 className="mt-5 text-xl font-medium tracking-[-0.02em]">{product.name}</h4>
       <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.16em] text-muted">{product.kind}</p>
       <p className="mt-4 text-[15px] leading-relaxed text-muted">{product.description}</p>
-      {product.href && (
-        <a
-          href={product.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-5 inline-flex items-center gap-1 self-start pt-1 text-sm font-medium text-ink underline decoration-line underline-offset-4 transition-colors hover:decoration-accent lg:mt-auto lg:pt-5"
-        >
-          Product page
-          <ArrowUpRight className="size-4" />
-        </a>
-      )}
+      <ul className="mt-5 flex flex-wrap gap-x-5 gap-y-2 pt-1 lg:mt-auto lg:pt-5">
+        {product.links.map((link) => (
+          <li key={link.href}>
+            <a
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-sm font-medium text-ink underline decoration-line underline-offset-4 transition-colors hover:decoration-accent"
+            >
+              {link.label}
+              <ArrowUpRight className="size-4" />
+            </a>
+          </li>
+        ))}
+      </ul>
     </article>
   );
 }

@@ -100,7 +100,16 @@ export default async function CvPage({ params }: { params: Promise<{ variant: st
                 {product.name} ({product.kind})
               </strong>
               {" – "}
-              {product.role}. {product.description}
+              {product.role}. {product.description}{" "}
+              {product.links.map((link, i) => (
+                <span key={link.href}>
+                  {i > 0 ? ", " : "Links: "}
+                  <a href={link.href} className="cv-link">
+                    {link.label}
+                  </a>
+                </span>
+              ))}
+              .
             </p>
           ))}
         </section>

@@ -53,7 +53,7 @@ did not mention GoVisual (co-founder, full-stack) or Bulbul (three Flutter apps)
   saved in `localStorage`, applied before paint to avoid a flash.
 - **Motion:** scroll reveals only, disabled under `prefers-reduced-motion`, and
   content is never hidden unless JS has confirmed it can reveal it.
-- **Photo:** the event lettering behind the head was removed with
-  `scripts/clean-photo.py`. Replace with a studio headshot when one exists.
+- **Photo:** the original photo, cropped and otherwise untouched. An earlier attempt to
+  erase the event lettering behind the head left artefacts, so it was dropped.
 - **Domain:** none yet. Set `NEXT_PUBLIC_SITE_URL` at deploy time; it drives
   canonical URLs, the sitemap and the website line on the CV.

@@ -35,7 +35,10 @@ export type Product = {
   role: string;
   domain: "health" | "yard" | "facility" | "iot" | "fleet" | "pharmacy" | "safety";
   description: string;
-  href?: string;
+  /** Public listings only: store pages and the product's own website. */
+  links: Link[];
+  /** App icon from the public store listing, under /images/apps/. */
+  icon?: string;
 };
 
 export type FeaturedProject = {
@@ -132,10 +135,15 @@ export const products: Product[] = [
   {
     name: "X.eMAR / MedXSol",
     kind: "Medication management system",
-    role: "Product Owner",
+    role: "Product Owner & Mobile Lead",
     domain: "health",
     description:
-      "Digital medication administration records for care facilities. I led requirements and delivery for the nurse mobile app and the admin system, which is built with React and packaged as a desktop app with Tauri. Covers real-time patient reporting, nurse workflows and facility and floor management.",
+      "Digital medication administration records for care facilities: a nurse mobile app, an admin platform, and a desktop app built with React and packaged with Tauri. I own the product requirements and lead the mobile app. Covers real-time patient reporting, nurse workflows and facility and floor management.",
+    links: [
+      { label: "Google Play", href: "https://play.google.com/store/apps/details?id=com.xemar.app" },
+      { label: "App Store", href: "https://apps.apple.com/us/app/x-emar/id6737589888" },
+      { label: "Website", href: "https://medxsol.com/x-emar/" },
+    ],
   },
   {
     name: "Reliable Yard Management",
@@ -144,6 +152,7 @@ export const products: Product[] = [
     domain: "yard",
     description:
       "A published iOS app and a Flutter Web admin portal for yard owners and administrators: vehicle check-in and check-out, QR code scanning, QR label printing and multi-yard vehicle management.",
+    links: [{ label: "App Store", href: "https://apps.apple.com/us/app/reliable-yard-management/id6762463289" }],
   },
   {
     name: "ALEF 360° HSEQ",
@@ -152,7 +161,7 @@ export const products: Product[] = [
     domain: "safety",
     description:
       "The Flutter app for a health, safety, environment and quality platform that covers incidents, inspections, permits to work and corrective actions.",
-    href: "https://disrupt-x.io/alef-360-hseq/",
+    links: [{ label: "Product page", href: "https://disrupt-x.io/alef-360-hseq/" }],
   },
   {
     name: "CAFM / CMMS Field Apps",
@@ -161,7 +170,10 @@ export const products: Product[] = [
     domain: "facility",
     description:
       "Flutter apps used by technicians in the field: work orders, asset tracking, QR scanning, checklists, attachments and maintenance history.",
-    href: "https://disrupt-x.io/alef-360-cafm-cmms/",
+    links: [
+      { label: "Google Play", href: "https://play.google.com/store/apps/details?id=com.facilitrolX.technician" },
+      { label: "App Store", href: "https://apps.apple.com/us/app/cafm-cmms-field-app/id6473368377" },
+    ],
   },
   {
     name: "CAFM / CMMS Tenant Apps",
@@ -170,6 +182,10 @@ export const products: Product[] = [
     domain: "facility",
     description:
       "Tenant-facing Flutter apps for submitting facility service requests with photos and notes, tracking progress and reviewing service history.",
+    links: [
+      { label: "Google Play", href: "https://play.google.com/store/apps/details?id=com.disruptX.cafmTenant" },
+      { label: "App Store", href: "https://apps.apple.com/us/app/cafm-cmms-tenant-app/id6770257341" },
+    ],
   },
   {
     name: "Alef IoT",
@@ -178,7 +194,10 @@ export const products: Product[] = [
     domain: "iot",
     description:
       "A Flutter app that gives business users mobile access to connected IoT data: facility, asset, utility and operational monitoring.",
-    href: "https://disrupt-x.io/alef-360-iot-platform/",
+    links: [
+      { label: "Google Play", href: "https://play.google.com/store/apps/details?id=com.disruptX.alefIoT" },
+      { label: "App Store", href: "https://apps.apple.com/us/app/alef-iot/id6468443325" },
+    ],
   },
   {
     name: "Alef IoT TechNex Captain",
@@ -187,7 +206,10 @@ export const products: Product[] = [
     domain: "fleet",
     description:
       "A Flutter fleet app: vehicle tracking, vehicle health monitoring, job assignment, route planning, alerts, reports and dashboards.",
-    href: "https://disrupt-x.io/alef-360-mobility/",
+    links: [
+      { label: "Google Play", href: "https://play.google.com/store/apps/details?id=com.alefIoT.techNexCaptain" },
+      { label: "App Store", href: "https://apps.apple.com/us/app/alef-iot-technex-captain/id6477740489" },
+    ],
   },
   {
     name: "Care First Pharmacy",
@@ -196,6 +218,11 @@ export const products: Product[] = [
     domain: "pharmacy",
     description:
       "A patient app in the MedXSol ecosystem: prescription profile access, refill requests, medication reminders and direct communication with the pharmacy.",
+    links: [
+      { label: "Google Play", href: "https://play.google.com/store/apps/details?id=com.medXsol.careFirst" },
+      { label: "App Store", href: "https://apps.apple.com/us/app/care-first-pharmacy/id6741827616" },
+      { label: "Website", href: "https://medxsol.com/pharmacy-app/" },
+    ],
   },
 ];
 
