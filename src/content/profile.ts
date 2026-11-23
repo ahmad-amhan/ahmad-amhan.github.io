@@ -182,6 +182,7 @@ export const products: Product[] = [
     links: [
       { label: "Google Play", href: "https://play.google.com/store/apps/details?id=com.reliableFleetServices.yardManagement" },
       { label: "App Store", href: "https://apps.apple.com/us/app/reliable-yard-management/id6762463289" },
+      { label: "Website", href: "https://reliablefleetservices.ca/" },
     ],
   },
   {
