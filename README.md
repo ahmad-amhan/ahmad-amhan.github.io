@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Ahmad Amhan — portfolio and CV
 
-## Getting Started
+One-page portfolio plus a printable CV, built with Next.js (App Router),
+TypeScript and Tailwind CSS. It exports to plain static files.
 
-First, run the development server:
+## Commands
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm dev        # http://localhost:3000
+pnpm build      # static site in out/
+pnpm lint
+pnpm typecheck
+pnpm cv         # regenerate the CV PDFs (needs Chrome or Edge installed)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Editing content
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Everything the site and the CV say lives in **`src/content/profile.ts`**.
+Change it there, then run `pnpm cv` so the PDF matches.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Web CV: `/cv/cairo/`
+- Downloadable PDF: `public/Ahmad_Amhan_CV.pdf`
 
-## Learn More
+## CV variants
 
-To learn more about Next.js, take a look at the following resources:
+`pnpm cv` writes one PDF per variant to `cv-output/` (or to `--out <folder>`):
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+pnpm cv --out "C:/Users/you/Desktop/cv"
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The public variant is `cairo`. Extra variants (a different phone number or
+address) go in `content/cv-variants.local.json`, which is git-ignored; see
+`content/cv-variants.example.json` for the shape. They are never part of a normal
+`pnpm build`, so they never reach the deployed site.
 
-## Deploy on Vercel
+`pnpm cv` deletes `out/` when it finishes. Run `pnpm build` again before deploying.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deploying
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+`pnpm build` produces `out/`. Any static host works: Cloudflare Pages, Netlify,
+GitHub Pages, Vercel. Build command `pnpm build`, output directory `out`.
+
+Set `NEXT_PUBLIC_SITE_URL` (for example `https://example.com`) in the host's
+environment once there is a domain. It enables canonical URLs, the sitemap and
+the website line on the CV.
+
+## Other notes
+
+- `public/og.png` is the social preview image (1200×630).
+- `scripts/clean-photo.py` is how the backdrop lettering was removed from the
+  portrait. See `docs/design.md` for the design decisions.

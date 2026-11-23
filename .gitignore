@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# private CV variants (other phone numbers / addresses) and generated PDFs
+/content/cv-variants.local.json
+/cv-output/

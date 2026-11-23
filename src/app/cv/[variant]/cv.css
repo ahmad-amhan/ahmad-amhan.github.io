@@ -1,0 +1,279 @@
+/*
+ * The CV is a document, not a themed page: fixed colours, A4 geometry, and the
+ * same markup on screen and in print so the PDF is exactly what you preview.
+ */
+
+@page {
+  size: A4;
+  margin: 13mm 14mm;
+}
+
+.cv-screen {
+  --cv-ink: #16181c;
+  --cv-muted: #555b65;
+  --cv-line: #d5d8dd;
+  --cv-accent: #bf3f0b;
+  min-height: 100dvh;
+  background: #e9e7e1;
+  color: var(--cv-ink);
+  padding: 24px 16px 64px;
+  color-scheme: light;
+}
+
+.cv-toolbar {
+  max-width: 210mm;
+  margin: 0 auto 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+}
+
+.cv-toolbar a {
+  color: var(--cv-ink);
+  text-decoration: none;
+  padding: 9px 16px;
+  border-radius: 999px;
+}
+
+.cv-toolbar a:hover {
+  background: rgb(0 0 0 / 0.06);
+}
+
+.cv-toolbar .cv-toolbar-primary {
+  background: var(--cv-ink);
+  color: #fff;
+  font-weight: 500;
+}
+
+.cv-toolbar .cv-toolbar-primary:hover {
+  background: #000;
+}
+
+.cv {
+  max-width: 210mm;
+  margin: 0 auto;
+  background: #fff;
+  padding: 13mm 14mm;
+  box-shadow: 0 10px 40px -16px rgb(0 0 0 / 0.3);
+  font-size: 9.6pt;
+  line-height: 1.42;
+}
+
+.cv a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.cv-header > div {
+  flex: 1;
+  min-width: 0;
+}
+
+.cv-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  padding-bottom: 11px;
+  border-bottom: 1.5px solid var(--cv-ink);
+}
+
+.cv h1 {
+  font-size: 25pt;
+  line-height: 1.05;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+.cv-title {
+  margin-top: 3px;
+  font-size: 11.5pt;
+  font-weight: 500;
+  color: var(--cv-accent);
+}
+
+.cv-contact {
+  margin-top: 9px;
+  color: var(--cv-muted);
+  font-size: 9pt;
+}
+
+.cv-contact-second {
+  margin-top: 1px;
+}
+
+.cv-dot {
+  color: #a9aeb6;
+}
+
+.cv-photo {
+  width: 23mm;
+  height: 23mm;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.cv section {
+  margin-top: 12px;
+}
+
+.cv h2 {
+  font-size: 8.6pt;
+  font-weight: 700;
+  /* No letter-spacing: spaced capitals extract from the PDF as "SU MMARY", which trips CV parsers. */
+  text-transform: uppercase;
+  color: var(--cv-ink);
+  padding-bottom: 3px;
+  margin-bottom: 7px;
+  border-bottom: 0.75px solid var(--cv-line);
+  break-after: avoid;
+}
+
+.cv h3 {
+  font-size: 10.4pt;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+
+.cv-role {
+  break-inside: avoid;
+}
+
+.cv-role + .cv-role {
+  margin-top: 9px;
+}
+
+.cv-role-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.cv-dates {
+  flex-shrink: 0;
+  font-size: 8.8pt;
+  color: var(--cv-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.cv-company {
+  color: var(--cv-muted);
+  font-size: 9.2pt;
+}
+
+.cv-role ul {
+  margin-top: 3px;
+  padding-left: 13px;
+  list-style: disc;
+}
+
+.cv-role li {
+  padding-left: 1px;
+}
+
+.cv-role li::marker {
+  color: var(--cv-accent);
+}
+
+.cv-role li + li {
+  margin-top: 1.5px;
+}
+
+.cv-products {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 18px;
+  row-gap: 7px;
+}
+
+.cv-product {
+  break-inside: avoid;
+}
+
+.cv-product h3 {
+  font-size: 9.6pt;
+}
+
+.cv-product h3 span {
+  font-weight: 400;
+  color: var(--cv-muted);
+}
+
+.cv-product p {
+  font-size: 8.8pt;
+  line-height: 1.38;
+  color: #2c3037;
+}
+
+.cv-product strong {
+  font-weight: 600;
+}
+
+.cv-skills > div {
+  display: grid;
+  grid-template-columns: 34mm 1fr;
+  column-gap: 10px;
+}
+
+.cv-skills > div + div {
+  margin-top: 2.5px;
+}
+
+.cv-skills dt {
+  font-weight: 600;
+}
+
+.cv-small {
+  margin-top: 3px;
+  font-size: 8.8pt;
+  color: var(--cv-muted);
+}
+
+.cv-keep {
+  break-inside: avoid;
+}
+
+@media (max-width: 640px) {
+  .cv {
+    padding: 22px 18px;
+  }
+
+  .cv-products {
+    grid-template-columns: 1fr;
+  }
+
+  .cv-skills > div {
+    grid-template-columns: 1fr;
+  }
+
+  .cv-role-head {
+    flex-direction: column;
+    gap: 0;
+  }
+}
+
+@media print {
+  html,
+  body {
+    background: #fff !important;
+  }
+
+  .cv-screen {
+    padding: 0;
+    background: #fff;
+    min-height: 0;
+  }
+
+  .cv-toolbar {
+    display: none;
+  }
+
+  .cv {
+    max-width: none;
+    padding: 0;
+    box-shadow: none;
+  }
+}
