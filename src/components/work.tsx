@@ -188,7 +188,7 @@ function ProductCard({ product }: { product: Product }) {
       <p className="mt-4 text-[15px] leading-relaxed text-muted">{product.description}</p>
       {product.brands && (
         <p className="mt-3 text-[13px] leading-relaxed text-ink-2">
-          <span className="font-semibold text-accent-text">{product.brands} white-label brands</span> on the stores.
+          <span className="font-semibold text-accent-text">{product.brands} white-label apps</span> on the stores.
           {product.brandsNote ? ` ${product.brandsNote}` : ""}
         </p>
       )}

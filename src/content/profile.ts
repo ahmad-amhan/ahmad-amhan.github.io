@@ -40,7 +40,8 @@ export type Product = {
   /** App icon from the public store listing, under /images/apps/. */
   icon?: string;
   /**
-   * How many branded (white-label) versions of this app are on the stores.
+   * How many branded (white-label) versions of this app are on the stores. It counts store apps,
+   * not distinct clients: one client can have two, and the publisher's own generic app is included.
    * Counted from the publisher's public App Store listings unless noted. Omit for a single-brand app.
    */
   brands?: number;
@@ -302,7 +303,7 @@ export function stats(): { value: number; suffix: string; label: string }[] {
   return [
     { value: new Date().getFullYear() - firstYear, suffix: "+", label: "years shipping Flutter apps" },
     // "+" because the brand counts are a floor: some brands sit under client store accounts.
-    { value: storeApps, suffix: "+", label: "store apps, white-label brands included" },
+    { value: storeApps, suffix: "+", label: "store apps, white labels included" },
     // Unifi products plus GoVisual and Bulbul. Not "led": Bulbul was a developer role.
     { value: products.length + featured.length, suffix: "", label: "products built or led" },
   ];
