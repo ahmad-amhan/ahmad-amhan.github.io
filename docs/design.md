@@ -74,5 +74,7 @@ traditional and too close to the Claude website. All four cues are gone.
 - **Store links:** from the apps sheet linked in the previous CV; each was checked live.
 - **Footer:** no "Built with Next.js" line. The toolbox already lists it, and a footer
   credit says nothing about the person.
-- **Domain:** none yet. Set `NEXT_PUBLIC_SITE_URL` at deploy time; it drives
+- **Hosting:** GitHub Pages, from the public repo `ahmad-amhan/ahmad-amhan.github.io`.
+  The repo name gives the site the root address, so no base path is needed.
+- **Domain:** none yet. `NEXT_PUBLIC_SITE_URL` is set in the deploy workflow; it drives
   canonical URLs, the sitemap and the website line on the CV.

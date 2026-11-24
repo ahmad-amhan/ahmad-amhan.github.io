@@ -39,12 +39,16 @@ address) go in `content/cv-variants.local.json`, which is git-ignored; see
 
 ## Deploying
 
-`pnpm build` produces `out/`. Any static host works: Cloudflare Pages, Netlify,
-GitHub Pages, Vercel. Build command `pnpm build`, output directory `out`.
+The site is published with GitHub Pages at <https://ahmad-amhan.github.io>.
+Every push to `master` runs `.github/workflows/deploy.yml`, which lints, builds
+and publishes `out/`. Nothing needs to be built by hand.
 
-Set `NEXT_PUBLIC_SITE_URL` (for example `https://example.com`) in the host's
-environment once there is a domain. It enables canonical URLs, the sitemap and
-the website line on the CV.
+The workflow sets `NEXT_PUBLIC_SITE_URL`, which enables canonical URLs, the
+sitemap and the website line on the CV page. Change it there when the site moves
+to its own domain.
+
+`pnpm build` produces `out/`, so any other static host works too: build command
+`pnpm build`, output directory `out`.
 
 ## Images
 
