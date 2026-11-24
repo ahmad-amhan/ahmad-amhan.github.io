@@ -39,6 +39,13 @@ export type Product = {
   links: Link[];
   /** App icon from the public store listing, under /images/apps/. */
   icon?: string;
+  /**
+   * How many branded (white-label) versions of this app are on the stores.
+   * Counted from the publisher's public App Store listings unless noted. Omit for a single-brand app.
+   */
+  brands?: number;
+  /** Shown after the brand count, e.g. which brand the links point to. */
+  brandsNote?: string;
 };
 
 export type FeaturedProject = {
@@ -187,12 +194,17 @@ export const products: Product[] = [
   },
   {
     name: "ALEF 360° HSEQ",
+    icon: "/images/apps/alef-hseq.webp",
     kind: "Health & safety mobile app",
     role: "Mobile Team Lead",
     domain: "safety",
     description:
       "The Flutter app for a health, safety, environment and quality platform that covers incidents, inspections, permits to work and corrective actions.",
-    links: [{ label: "Product page", href: "https://disrupt-x.io/alef-360-hseq/" }],
+    links: [
+      { label: "Google Play", href: "https://play.google.com/store/apps/details?id=com.disruptx.hseq" },
+      { label: "App Store", href: "https://apps.apple.com/us/app/alef-360-hseq/id6780176523" },
+      { label: "Product page", href: "https://disrupt-x.io/alef-360-hseq/" },
+    ],
   },
   {
     name: "CAFM / CMMS Field Apps",
@@ -200,6 +212,7 @@ export const products: Product[] = [
     kind: "Technician operations",
     role: "Mobile Team Lead",
     domain: "facility",
+    brands: 11,
     description:
       "Flutter apps used by technicians in the field: work orders, asset tracking, QR scanning, checklists, attachments and maintenance history.",
     links: [
@@ -213,6 +226,7 @@ export const products: Product[] = [
     kind: "Facility requests",
     role: "Mobile Team Lead",
     domain: "facility",
+    brands: 6,
     description:
       "Tenant-facing Flutter apps for submitting facility service requests with photos and notes, tracking progress and reviewing service history.",
     links: [
@@ -226,6 +240,7 @@ export const products: Product[] = [
     kind: "IoT monitoring & facility management",
     role: "Mobile Team Lead",
     domain: "iot",
+    brands: 4,
     description:
       "A Flutter app that gives business users mobile access to connected IoT data: facility, asset, utility and operational monitoring.",
     links: [
@@ -239,6 +254,7 @@ export const products: Product[] = [
     kind: "Fleet management",
     role: "Mobile Team Lead",
     domain: "fleet",
+    brands: 5,
     description:
       "A Flutter fleet app: vehicle tracking, vehicle health monitoring, job assignment, route planning, alerts, reports and dashboards.",
     links: [
@@ -247,13 +263,16 @@ export const products: Product[] = [
     ],
   },
   {
-    name: "Care First Pharmacy",
+    name: "MedXSol Pharmacy App",
     icon: "/images/apps/care-first.webp",
     kind: "Pharmacy patient app",
     role: "Mobile Team Lead",
     domain: "pharmacy",
+    // Ahmad's own count. The publisher's App Store account lists five of the brands.
+    brands: 6,
+    brandsNote: "The links open one of them, Care First Pharmacy.",
     description:
-      "A patient app in the MedXSol ecosystem: prescription profile access, refill requests, medication reminders and direct communication with the pharmacy.",
+      "A MedXSol patient app, released under each pharmacy's own brand: prescription profile access, refill requests, medication reminders and direct communication with the pharmacy.",
     links: [
       { label: "Google Play", href: "https://play.google.com/store/apps/details?id=com.medXsol.careFirst" },
       { label: "App Store", href: "https://apps.apple.com/us/app/care-first-pharmacy/id6741827616" },
@@ -264,16 +283,28 @@ export const products: Product[] = [
 
 const isStoreLink = (link: Link) => link.label === "Google Play" || link.label === "App Store";
 
+/** Apps with more than one brand on the stores. */
+const whiteLabelProducts = products.filter((product) => (product.brands ?? 1) > 1);
+
+/** Branded apps across the white-label products, e.g. 32. */
+export const whiteLabelApps = whiteLabelProducts.reduce((sum, product) => sum + (product.brands ?? 1), 0);
+
+/** A round floor for prose, so the sentence stays true when a brand is added: 32 -> 30. */
+const roundDown = (value: number) => Math.floor(value / 10) * 10;
+
 /** Headline numbers. All computed from the data above, so they cannot drift from it. */
 export function stats(): { value: number; suffix: string; label: string }[] {
   const firstYear = Math.min(...experience.map((role) => Number(role.start.slice(-4))));
+  // Every brand of a store app counts once (not once per store), plus the featured projects' apps.
   const storeApps =
-    products.filter((product) => product.links.some(isStoreLink)).length +
+    products.filter((product) => product.links.some(isStoreLink)).reduce((sum, product) => sum + (product.brands ?? 1), 0) +
     featured.reduce((sum, project) => sum + (project.storeApps ?? 0), 0);
   return [
     { value: new Date().getFullYear() - firstYear, suffix: "+", label: "years shipping Flutter apps" },
-    { value: storeApps, suffix: "", label: "apps live on the stores" },
-    { value: products.length, suffix: "", label: "products led at Unifi Solutions" },
+    // "+" because the brand counts are a floor: some brands sit under client store accounts.
+    { value: storeApps, suffix: "+", label: "store apps, white-label brands included" },
+    // Unifi products plus GoVisual and Bulbul. Not "led": Bulbul was a developer role.
+    { value: products.length + featured.length, suffix: "", label: "products built or led" },
   ];
 }
 
@@ -319,7 +350,7 @@ export const experience: Role[] = [
       "Product Owner for multiple B2B software products: requirements, priorities, delivery scope, and coordination between stakeholders, developers, QA and clients.",
       "Lead Flutter development across Android and iOS: architecture decisions, code reviews, task planning, release preparation and production issue resolution.",
       "Translate business requirements into technical tasks, acceptance criteria and implementation flows for mobile, frontend, backend and QA teams.",
-      "Manage white-label mobile apps for ALEF, CAFM/CMMS, tenant services, healthcare, pharmacy, fleet management and technician field operations.",
+      `Release and maintain more than ${roundDown(whiteLabelApps)} white-label apps on Google Play and the App Store from shared Flutter codebases: CAFM/CMMS field and tenant apps, pharmacy, fleet and IoT.`,
       "Coordinate Google Play and App Store releases: metadata, privacy policy updates, review notes, rejection appeals, permission compliance and follow-up.",
       "Support web delivery by clarifying requirements, reviewing and merging pull requests, and coordinating with React developers.",
       "Led mobile and Flutter Web delivery for Reliable Yard Management: the mobile app and the admin portal for yard owners.",

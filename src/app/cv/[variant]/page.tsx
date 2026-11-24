@@ -110,6 +110,7 @@ export default async function CvPage({ params }: { params: Promise<{ variant: st
               </strong>
               {" – "}
               {product.role}. {product.description}{" "}
+              {product.brands ? `${product.brands} white-label brands on the stores. ` : ""}
               {product.links.map((link, i) => (
                 <span key={link.href}>
                   {i > 0 ? ", " : "Links: "}
