@@ -381,7 +381,7 @@ export const experience: Role[] = [
   },
   {
     id: "sakari",
-    role: "Flutter Developer",
+    role: "Flutter Developer (Part-time)",
     company: "Sakari Software Development",
     companyUrl: "https://www.sakari.ca",
     start: "Feb 2021",
